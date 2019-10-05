@@ -1,0 +1,19 @@
+Package: FancyPackRLiU5
+Type: Package
+Title: API package based on ThenMap
+Version: 1.0
+Date: 2019-10-01
+Author: Jun Li
+Maintainer: Jun Li <junli559@student.liu.se>
+Description: Read and draw map with geoJSON from ThenMap API
+License: GPL-3
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown,
+    httr,
+    jsonlite,
+    ggplot2,
+    shiny
+RoxygenNote: 6.1.1
+Encoding: UTF-8
