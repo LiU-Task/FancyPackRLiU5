@@ -1,3 +1,15 @@
+#' ICU 
+#' 
+#' Given \code{land}, data form \code{module} and \code{date}, show the map of an entity under special period
+#' 
+#' @param land, a data source or category
+#' @param module, a data form which includes different information
+#' @param date, special date when the entity existed
+#' @return a set rawData including info such as id, name, type and coordinates etc 
+#' @examples
+#' x<-ICU$new(land="se-7",date="2015-11",mode="geo")
+#' x$visa(stockholm)
+
 ICU<-setRefClass("ICU",
   fields=list(land="character",
               date="character",
@@ -61,7 +73,7 @@ ICU<-setRefClass("ICU",
                
          }}
        
-       g
+       g+xlab("Longitude")+ylab("Latitude")
   },
   
   

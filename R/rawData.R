@@ -1,3 +1,17 @@
+#' rawData 
+#' 
+#' Given \code{land}, data form \code{module} and \code{date}, generate the raw data set
+#' 
+#' @param land, a data source or category
+#' @param module, a data form which includes different information
+#' @param date, special date when the entity existed
+#' @return a set rawData including info such as id, name, type and coordinates etc 
+#' @examples
+#' info<-rawData(land,"info",date)$description
+#'          
+#' 
+
+
 rawData<-function(land,module,date,language="") {
   
   url<-"http://api.thenmap.net"

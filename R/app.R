@@ -8,19 +8,19 @@ ui <- fluidPage(
       # Choose dataset
       selectInput(inputId = "dataset",
                   label = "Choose a dataset:",
-                  choices = c("world-2","se-7","se-4","fi-8", "ch-8", "no-7","no-4","dk-7","us-4","gl-7")),
+                  choices = c("se-7","se-4","world-2","fi-8", "ch-8", "no-7","no-4","dk-7","us-4","gl-7")),
       
       # Type in objective 
-      textInput("aim", label = h3("Entity to show"), value = "Enter entity name..."),
+      textInput(inputId="aim", label = h4("Entity to show"), value = "Enter entity name..."),
       # Type in date
-      textInput("date", label = h3("Searching date"), value = "Enter in form of YYYY-MM..."),
+      textInput(inputId = "date", label = h4("Searching date"), value = "Enter in form of YYYY-MM...")
       
     ),
     
     mainPanel(
       plotOutput(outputId = "visa"),
-      verbatimTextOutput("id"),
-      verbatimTextOutput("name")
+      verbatimTextOutput(outputId = "id"),
+      verbatimTextOutput(outputId = "name")
       
     )))
 
@@ -28,7 +28,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   datasetInput <- reactive({
     switch(input$dataset,
-           "world-2"=world-2,"se-7"=se7,"se-4"=se-4,"fi-8"=fi-8, "ch-8"=ch-8, "no-7"=no-7,"no-4"=no-4,"dk-7"=dk-7,"us-4"=us-4,"gl-7"=gl-7)
+           "se-7"=se-7,"se-4"=se-4,"world-2"=world-2,"fi-8"=fi-8, "ch-8"=ch-8, "no-7"=no-7,"no-4"=no-4,"dk-7"=dk-7,"us-4"=us-4,"gl-7"=gl-7)
   })
   
   
@@ -43,7 +43,7 @@ server <- function(input, output) {
     z<-x$guo$Countries$coordinates
     enti<-x$guo$Entities
     gj<-x$guo$Countries
-    id<-enti[grep(aim,enti$name,ignore.case=TRUE),]$id
+    id<-enti[grep(input$aim,enti$name,ignore.case=TRUE),]$id
     cat(paste("This entity has id number of ",id,sep=""))
   }) 
   output$name <- renderPrint({
@@ -51,7 +51,7 @@ server <- function(input, output) {
     z<-x$guo$Countries$coordinates
     enti<-x$guo$Entities
     gj<-x$guo$Countries
-    nam<-enti[grep(aim,enti$name,ignore.case=TRUE),]$name
+    nam<-enti[grep(input$aim,enti$name,ignore.case=TRUE),]$name
     cat(paste("This entity has formal name of ",nam,sep=""))
   }) 
   

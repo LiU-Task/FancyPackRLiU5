@@ -5,7 +5,7 @@ Version: 1.0
 Date: 2019-10-01
 Author: Jun Li
 Maintainer: Jun Li <junli559@student.liu.se>
-Description: Read and draw map with geoJSON from ThenMap API
+Description: Read and draw map with geoJSON from ThenMap API, showing the map of an wanted entity under specified date
 License: GPL-3
 Suggests: 
     testthat,
