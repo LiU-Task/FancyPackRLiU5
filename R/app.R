@@ -1,3 +1,4 @@
+require(shiny)
 library(shiny)
 
 ui <- fluidPage(
@@ -8,7 +9,7 @@ ui <- fluidPage(
       # Choose dataset
       selectInput(inputId = "dataset",
                   label = "Choose a dataset:",
-                  choices = c("se-7","se-4","world-2","fi-8", "ch-8", "no-7","no-4","dk-7","us-4","gl-7")),
+                  choices = c("world-2","se-7","se-4","fi-8", "ch-8", "no-7","no-4","dk-7","us-4","gl-7")),
       
       # Type in objective 
       textInput(inputId="aim", label = h4("Entity to show"), value = "Enter entity name..."),
@@ -24,22 +25,21 @@ ui <- fluidPage(
       
     )))
 
-
 server <- function(input, output) {
   datasetInput <- reactive({
     switch(input$dataset,
-           "se-7"=se-7,"se-4"=se-4,"world-2"=world-2,"fi-8"=fi-8, "ch-8"=ch-8, "no-7"=no-7,"no-4"=no-4,"dk-7"=dk-7,"us-4"=us-4,"gl-7"=gl-7)
+           "world-2"=world-2,"se-7"=se-7,"se-4"=se-4,"fi-8"=fi-8, "ch-8"=ch-8, "no-7"=no-7,"no-4"=no-4,"dk-7"=dk-7,"us-4"=us-4,"gl-7"=gl-7)
   })
   
   
   # Show map 
   output$visa <- renderPlot({
-    x<-ICU$new(land=input$dataset,date=input$date,mode="geo")   
+    x<-ICU$new(land=input$dataset,date=input$date)   
     x$visa(input$aim)
   })
   # Show id + Formal name
   output$id <- renderPrint({
-    #x<-ICU$new(land=input$dataset,date=input$date,mode="geo") 
+    #x<-ICU$new(land=input$dataset,date=input$date) 
     z<-x$guo$Countries$coordinates
     enti<-x$guo$Entities
     gj<-x$guo$Countries
@@ -47,7 +47,7 @@ server <- function(input, output) {
     cat(paste("This entity has id number of ",id,sep=""))
   }) 
   output$name <- renderPrint({
-    #x<-ICU$new(land=input$dataset,date=input$date,mode="geo") 
+    #x<-ICU$new(land=input$dataset,date=input$date) 
     z<-x$guo$Countries$coordinates
     enti<-x$guo$Entities
     gj<-x$guo$Countries
@@ -57,5 +57,4 @@ server <- function(input, output) {
   
 }
 
-# Create Shiny app ----
 shinyApp(ui = ui, server = server)

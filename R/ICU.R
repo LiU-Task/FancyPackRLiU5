@@ -7,13 +7,13 @@
 #' @param date, special date when the entity existed
 #' @return a set rawData including info such as id, name, type and coordinates etc 
 #' @examples
-#' x<-ICU$new(land="se-7",date="2015-11",mode="geo")
-#' x$visa(stockholm)
+#' x<-ICU$new(land="se-7",date="2015-11")
+#' x$visa("stockholm")
 
 ICU<-setRefClass("ICU",
   fields=list(land="character",
               date="character",
-              mode="character",
+              #mode="character",
               #find="character",
               #language="character",
               guo="list"),               
@@ -23,7 +23,7 @@ ICU<-setRefClass("ICU",
   methods=list( 
      
     
-    initialize=function(land="character",date="character",mode="character",guo="list"){
+    initialize=function(land="character",date="character",guo="list"){
       options(stringsAsFactors = FALSE) # Turn off automatical conversion of text factoring
       require(httr)
       require(jsonlite)
@@ -31,7 +31,7 @@ ICU<-setRefClass("ICU",
       
       info<-rawData(land,"info",date)$description     ## Info
       enti<-as.data.frame(rawData(land,"data",date))  ## Data(id+name)
-      if(mode=="geo")
+      #if(mode=="geo")
       {gj<-rawData(land,"geo",date)                   ## GEO(id+coordinates)
       
       }

@@ -20,6 +20,6 @@ Given \code{land}, data form \code{module} and \code{date}, show the map of an e
 }
 
 \examples{
-x<-ICU$new(land="se-7",date="2015-11",mode="geo")
-x$visa(stockholm)
+x<-ICU$new(land="se-7",date="2015-11")
+x$visa("stockholm")
 }
